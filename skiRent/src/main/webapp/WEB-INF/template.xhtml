@@ -1,0 +1,67 @@
+<?xml version='1.0' encoding='UTF-8' ?> 
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <link href="#{request.contextPath}/resources/css/default.css" rel="stylesheet" type="text/css" />
+        <link href="#{request.contextPath}/resources/css/cssLayout.css" rel="stylesheet" type="text/css" />
+        <title>Facelets Template</title>
+    </h:head>
+
+    <h:body>
+        <p:layout fullPage="true">
+
+            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+                
+                <h2><h:outputText value="Aplicación Empresarial - SkiRent"/></h2>
+                <h:form>
+                <p:toolbar rendered="#{request.isUserInRole('users')}">
+                <f:facet name="left">
+                <p:commandButton type="button" value="New" icon="ui-icon-document"/>
+                <p:commandButton type="button" value="Open" icon="ui-icon-folder-open" />
+                <span class="ui-separator">
+                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                </span>
+                <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
+                </f:facet>
+                <f:facet name="right">
+                <p:menuButton value="#{loginView.authenticatedUser.name}">
+                <p:menuitem value="Cerrar sesión" action="#{loginView.logout}" icon="ui-iconpower" />
+                </p:menuButton>
+                </f:facet>
+                </p:toolbar>
+                </h:form>              
+                
+            </p:layoutUnit>
+
+            <p:layoutUnit position="west" size="200" header="Menú" collapsible="true">
+                <h:form>
+                <p:menu>
+                <p:menuitem value="Inicio" outcome="/index.xhtml" icon="ui-icon-home" />
+                <p:menuitem value="Iniciar Sesión" outcome="/login.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-key"/>
+                <p:menuitem value="Registro" outcome="/registro.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-pencil"/>
+                <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
+                <p:menuitem value="Booking" action="booking" icon="ui-icon-cart"/>
+                <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-person"/>
+                </p:submenu>
+                <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">
+                <p:menuitem value="Películas" outcome="/client/movies.xhtml" icon="ui-icon-calculator"/>
+                </p:submenu>
+                </p:menu>
+                </h:form>
+
+            </p:layoutUnit>
+
+            <p:layoutUnit position="center">
+                <ui:insert name="content">Content</ui:insert>
+            </p:layoutUnit>
+            
+        </p:layout>
+    </h:body>
+
+</html>

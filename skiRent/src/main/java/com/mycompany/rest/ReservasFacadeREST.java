@@ -8,6 +8,7 @@ package com.mycompany.rest;
 import com.mycompany.entities.Reservas;
 import java.util.List;
 import javax.ejb.Stateless;
+import javax.inject.Named;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 import javax.ws.rs.Consumes;
@@ -24,6 +25,7 @@ import javax.ws.rs.core.MediaType;
  *
  * @author gonza
  */
+@Named
 @Stateless
 @Path("com.mycompany.entities.reservas")
 public class ReservasFacadeREST extends AbstractFacade<Reservas> {

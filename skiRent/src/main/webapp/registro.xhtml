@@ -1,0 +1,50 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+
+        <ui:composition template="./WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                
+                <h:form>
+                <f:event listener="#{registerView.validatePassword}" type="postValidate" />
+                <p:panel header="Crear una nueva cuenta">
+                <h:panelGrid id="grid" columns="3">
+                    
+                <h:outputLabel for="name" value="Nombre:" style="font-weight:bold"/>
+                <p:inputText id="name" value="#{registerView.name}" required="true" requiredMessage="Por favor, introduce tu nombre." maxlength="30"/>
+                <p:message for="name"/>
+                
+                <h:outputLabel for="email" value="E-Mail:" style="font-weight:bold"/>
+                <p:inputText id="email" value="#{registerView.email}" required="true" requiredMessage="Por favor, introduce tu email.">
+                <f:validator validatorId="emailValidator" />
+                </p:inputText>                
+                <p:message for="email"/>
+                
+                <h:outputLabel for="password" value="Contraseña:" style="font-weight:bold"/>                                
+                <p:password id="password" value="#{registerView.password}" feedback="true" required="true" requiredMessage="Por favor, introduce tu contraseña." validatorMessage="La contraseña debe contener al menos un carácter en minúsculas, un carácter en mayúscula, un número y su longitud debe estar entre 6 y 20 caracteres.">
+                <f:validateRegex pattern="((?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20})" />
+                </p:password>                
+                <p:message for="password"/>
+                
+                <h:outputLabel for="confirmpassword" value="Confirmar contraseña:" style="font-weight:bold"/>
+                <p:password id="confirmpassword" feedback="true" value="#{registerView.confirmPassword}" required="true" requiredMessage="Por favor, confirma tu contraseña."/>
+                <p:message for="confirmpassword"/>
+                
+                </h:panelGrid>
+                <p:commandButton action="#{registerView.register}" update="grid" value="Regístrate!" icon="ui-icon-pencil"/>
+                </p:panel>
+                </h:form>
+                
+            </ui:define>
+
+        </ui:composition>
+
+    </body>
+</html>

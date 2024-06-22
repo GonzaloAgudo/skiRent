@@ -31,7 +31,7 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Users.findAll", query = "SELECT u FROM Users u"),
     @NamedQuery(name = "Users.findByEmail", query = "SELECT u FROM Users u WHERE u.email = :email"),
     @NamedQuery(name = "Users.findByPassword", query = "SELECT u FROM Users u WHERE u.password = :password"),
-    @NamedQuery(name = "Users.findByNombre", query = "SELECT u FROM Users u WHERE u.nombre = :nombre"),
+    @NamedQuery(name = "Users.findByName", query = "SELECT u FROM Users u WHERE u.name = :name"),
     @NamedQuery(name = "Users.findByNif", query = "SELECT u FROM Users u WHERE u.nif = :nif"),
     @NamedQuery(name = "Users.findByHorarioEstablecimiento", query = "SELECT u FROM Users u WHERE u.horarioEstablecimiento = :horarioEstablecimiento"),
     @NamedQuery(name = "Users.findByTelefono", query = "SELECT u FROM Users u WHERE u.telefono = :telefono"),
@@ -54,8 +54,8 @@ public class Users implements Serializable {
     @Column(name = "password")
     private String password;
     @Size(max = 64)
-    @Column(name = "nombre")
-    private String nombre;
+    @Column(name = "name")
+    private String name;
     @Size(max = 10)
     @Column(name = "nif")
     private String nif;
@@ -80,10 +80,16 @@ public class Users implements Serializable {
     public Users(String email) {
         this.email = email;
     }
-
+    
     public Users(String email, String password) {
         this.email = email;
         this.password = password;
+    }
+
+    public Users(String email, String password, String name) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
     }
 
     public String getEmail() {
@@ -102,12 +108,12 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public String getNombre() {
-        return nombre;
+    public String getName() {
+        return name;
     }
 
-    public void setNombre(String nombre) {
-        this.nombre = nombre;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getNif() {
