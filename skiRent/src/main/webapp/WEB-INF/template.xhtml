@@ -20,21 +20,22 @@
                 
                 <h2><h:outputText value="Aplicación Empresarial - SkiRent"/></h2>
                 <h:form>
-                <p:toolbar rendered="#{request.isUserInRole('users')}">
-                <f:facet name="left">
-                <p:commandButton type="button" value="New" icon="ui-icon-document"/>
-                <p:commandButton type="button" value="Open" icon="ui-icon-folder-open" />
-                <span class="ui-separator">
-                <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                </span>
-                <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
-                </f:facet>
-                <f:facet name="right">
-                <p:menuButton value="#{loginView.authenticatedUser.name}">
-                <p:menuitem value="Cerrar sesión" action="#{loginView.logout}" icon="ui-iconpower" />
-                </p:menuButton>
-                </f:facet>
-                </p:toolbar>
+                    <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('owners')}">
+                        <f:facet name="left">
+                            <p:commandButton type="button" value="New" icon="ui-icon-document"/>
+                            <p:commandButton type="button" value="Open" icon="ui-icon-folder-open" />
+                            <span class="ui-separator">
+                                <span class="ui-icon ui-icon-grip-dotted-vertical" />
+                            </span>
+                            <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
+                        </f:facet>
+
+                        <f:facet name="right">
+                            <p:menuButton value="#{loginView.authenticatedUser.name}">
+                            <p:menuitem value="Cerrar sesión" action="#{loginView.logout}" icon="ui-iconpower" />
+                            </p:menuButton>
+                        </f:facet>
+                    </p:toolbar>
                 </h:form>              
                 
             </p:layoutUnit>
@@ -43,15 +44,19 @@
                 <h:form>
                 <p:menu>
                 <p:menuitem value="Inicio" outcome="/index.xhtml" icon="ui-icon-home" />
-                <p:menuitem value="Iniciar Sesión" outcome="/login.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-key"/>
-                <p:menuitem value="Registro" outcome="/registro.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-pencil"/>
+                <p:menuitem value="Iniciar Sesión" outcome="/login.xhtml" rendered="#{request.isUserInRole('users') == false and request.isUserInRole('owners') == false}" icon="ui-icon-key"/>
+                <p:menuitem value="Registro Clientes" outcome="/registroCliente.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-pencil"/>
+                <p:menuitem value="Registro Propietarios" outcome="/registroPropietario.xhtml" rendered="#{request.isUserInRole('owners')==false}" icon="ui-icon-pencil"/>
+                
                 <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
-                <p:menuitem value="Booking" action="booking" icon="ui-icon-cart"/>
-                <p:menuitem value="Chat" outcome="/index.xhtml" icon="ui-icon-person"/>
+                    <p:menuitem value="Booking" action="booking" icon="ui-icon-cart"/>
+                    <p:menuitem value="Chat" outcome="/index.xhtml" icon="ui-icon-person"/>
                 </p:submenu>
+                
                 <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">
-                <p:menuitem value="Películas" outcome="/index.xhtml" icon="ui-icon-calculator"/>
+                    <p:menuitem value="Películas" outcome="/index.xhtml" icon="ui-icon-calculator"/>
                 </p:submenu>
+                
                 </p:menu>
                 </h:form>
 

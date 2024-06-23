@@ -51,6 +51,8 @@ public class LoginView implements Serializable{
             return "/users/privatepage?faces-redirect=true";
         } else if (request.isUserInRole("admin")) {
             return "/admin/privatepage?faces-redirect=true";
+        }else if (request.isUserInRole("owners")){
+            return "/owners/privatepage?faces-redirect=true";
         } else {
             return "login";
         }

@@ -14,7 +14,7 @@
                 
                 <h:form>
                 <f:event listener="#{registerView.validatePassword}" type="postValidate" />
-                <p:panel header="Crear una nueva cuenta">
+                <p:panel header="Crear una nueva cuenta de CLIENTE">
                 <h:panelGrid id="grid" columns="3">
                     
                 <h:outputLabel for="name" value="Nombre:" style="font-weight:bold"/>
@@ -38,7 +38,7 @@
                 <p:message for="confirmpassword"/>
                 
                 </h:panelGrid>
-                <p:commandButton action="#{registerView.register}" update="grid" value="Regístrate!" icon="ui-icon-pencil"/>
+                <p:commandButton action="#{registerView.registerUser}" update="grid" value="Regístrate!" icon="ui-icon-pencil"/>
                 </p:panel>
                 </h:form>
                 

@@ -30,6 +30,21 @@ public class UserEJB {
         em.persist(user);
         em.persist(group);
         return user;
+    }    
+    
+    public Users createOwner(Users user) {
+        try {
+            user.setPassword(AuthenticationUtils.encodeSHA256(user.getPassword()));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        UserGroups group = new UserGroups();
+        group.setEmail(user.getEmail());
+        group.setGroupName("owners");
+        em.persist(user);
+        em.persist(group);
+        return user;
     }
 
     public Users findByEmail(String email) {

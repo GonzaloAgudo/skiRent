@@ -12,6 +12,7 @@
                 <p>Tu id de usuario es #{loginView.authenticatedUser.email}</p>
                 <p>Tienes el rol users?: #{request.isUserInRole('users')}</p>
                 <p>Tienes el rol admin?: #{request.isUserInRole('admin')}</p>
+                <p>Tienes el rol owners?: #{request.isUserInRole('owners')}</p>
                 <p>Esta es una página privada, requiere acceso mediante password.</p>
             </ui:define>
 
