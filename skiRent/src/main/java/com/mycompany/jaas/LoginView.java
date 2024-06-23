@@ -38,8 +38,10 @@ public class LoginView implements Serializable{
         HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
         
         try {
+            System.out.println("Login intentado con e-mail: " + email + " y password: " + password);
             request.login(email, password);
         } catch (ServletException e) {
+            System.out.println("Login fallado con e-mail: " + email + " y password: " + password);
             context.addMessage(null, new FacesMessage(FacesMessage.SEVERITY_WARN, "Login incorrecto!", null));
             return "login";
         }

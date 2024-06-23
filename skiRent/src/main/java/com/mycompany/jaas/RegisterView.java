@@ -67,7 +67,7 @@ public class RegisterView implements Serializable {
     public String register() {
         Users user = new Users(email, password, name);
         userEJB.createUser(user);
-        System.out.println("Nuevo usuario creado con e-mail: " + email + " y nombre: " + name);
+        System.out.println("Nuevo usuario creado con e-mail: " + email + " y password: " + password);
         return "regok";
     }
 

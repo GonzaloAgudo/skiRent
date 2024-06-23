@@ -47,10 +47,10 @@
                 <p:menuitem value="Registro" outcome="/registro.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-pencil"/>
                 <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
                 <p:menuitem value="Booking" action="booking" icon="ui-icon-cart"/>
-                <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-person"/>
+                <p:menuitem value="Chat" outcome="/index.xhtml" icon="ui-icon-person"/>
                 </p:submenu>
                 <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">
-                <p:menuitem value="Películas" outcome="/client/movies.xhtml" icon="ui-icon-calculator"/>
+                <p:menuitem value="Películas" outcome="/index.xhtml" icon="ui-icon-calculator"/>
                 </p:submenu>
                 </p:menu>
                 </h:form>
