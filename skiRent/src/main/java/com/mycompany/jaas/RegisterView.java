@@ -7,6 +7,8 @@ package com.mycompany.jaas;
 
 import com.mycompany.entities.Users;
 import java.io.Serializable;
+import java.util.Calendar;
+import java.util.Date;
 import javax.enterprise.context.SessionScoped;
 import javax.faces.application.FacesMessage;
 import javax.faces.component.UIComponent;
@@ -31,6 +33,13 @@ public class RegisterView implements Serializable {
     private String email;
     private String password;
     private String confirmPassword;
+    private Date fechaNacimiento;
+    private String telefono;
+    private String nif;
+    private String domicilio;
+    private String horarioEstablecimiento;
+    private Boolean esVerificado;
+    
 
     public void validatePassword(ComponentSystemEvent event) {
         FacesContext facesContext = FacesContext.getCurrentInstance();
@@ -61,18 +70,39 @@ public class RegisterView implements Serializable {
             msg.setSeverity(FacesMessage.SEVERITY_ERROR);
             facesContext.addMessage(uiInputPassword.getClientId(), msg);
             facesContext.renderResponse();
+        }        
+        if (fechaNacimiento != null){
+            UIInput uiInputFechaNacimiento = (UIInput) components.findComponent("fechaNacimiento");
+            Date fechaNacimiento = (Date) uiInputFechaNacimiento.getLocalValue();
+            if (fechaNacimiento == null || !esAdulto(fechaNacimiento)) {
+                FacesMessage msg = new FacesMessage("Debe ser mayor de 18 años");
+                msg.setSeverity(FacesMessage.SEVERITY_ERROR);
+                facesContext.addMessage(uiInputFechaNacimiento.getClientId(), msg);
+                facesContext.renderResponse();
+            }
         }
+        
     }
+    
+    private boolean esAdulto(Date fechaNacimiento) {
+        Calendar cal = Calendar.getInstance();
+        cal.add(Calendar.YEAR, -18);
+        Date today18YearsAgo = cal.getTime();
+        return fechaNacimiento.before(today18YearsAgo);
+    }
+    
 
     public String registerUser() {
-        Users user = new Users(email, password, name);
+        Users user = new Users(email, password, name, telefono, nif, fechaNacimiento, esVerificado);
+        user.setEsVerificado(true);
         userEJB.createUser(user);
         System.out.println("Nuevo cliente creado con e-mail: " + email + " y password: " + password);
         return "regok";
     }
     
     public String registerOwner() {
-        Users user = new Users(email, password, name);
+        Users user = new Users(email, password, name, telefono, nif, domicilio, horarioEstablecimiento, esVerificado);
+        user.setEsVerificado(false);
         userEJB.createOwner(user);
         System.out.println("Nuevo propietario creado con e-mail: " + email + " y password: " + password);
         return "regok";
@@ -117,4 +147,53 @@ public class RegisterView implements Serializable {
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
     }
+
+    public Date getFechaNacimiento() {
+        return fechaNacimiento;
+    }
+
+    public void setFechaNacimiento(Date fechaNacimiento) {
+        this.fechaNacimiento = fechaNacimiento;
+    }
+
+    public String getTelefono() {
+        return telefono;
+    }
+
+    public void setTelefono(String telefono) {
+        this.telefono = telefono;
+    }
+
+    public String getNif() {
+        return nif;
+    }
+
+    public void setNif(String nif) {
+        this.nif = nif;
+    }
+
+    public String getDomicilio() {
+        return domicilio;
+    }
+
+    public void setDomicilio(String domicilio) {
+        this.domicilio = domicilio;
+    }
+
+    public String getHorarioEstablecimiento() {
+        return horarioEstablecimiento;
+    }
+
+    public void setHorarioEstablecimiento(String horarioEstablecimiento) {
+        this.horarioEstablecimiento = horarioEstablecimiento;
+    }
+
+    public Boolean getEsVerificado() {
+        return esVerificado;
+    }
+
+    public void setEsVerificado(Boolean esVerificado) {
+        this.esVerificado = esVerificado;
+    }   
+    
 }

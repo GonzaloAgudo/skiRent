@@ -86,10 +86,25 @@ public class Users implements Serializable {
         this.password = password;
     }
 
-    public Users(String email, String password, String name) {
+    public Users(String email, String password, String name, String telefono, String nif, Date fechaNacimiento, Boolean esVerificado) {
         this.email = email;
         this.password = password;
         this.name = name;
+        this.telefono = telefono;
+        this.nif = nif;
+        this.fechaNacimiento = fechaNacimiento;
+        this.esVerificado = esVerificado = true;
+    }
+    
+    public Users(String email, String password, String name, String telefono, String nif, String domicilio, String horarioEstablecimiento, Boolean esVerificado) {
+        this.email = email;
+        this.password = password;
+        this.name = name;
+        this.telefono = telefono;
+        this.nif = nif;
+        this.domicilio = domicilio;
+        this.horarioEstablecimiento = horarioEstablecimiento;
+        this.esVerificado = esVerificado = false;
     }
 
     public String getEmail() {

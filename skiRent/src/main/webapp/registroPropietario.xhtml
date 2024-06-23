@@ -36,6 +36,22 @@
                 <h:outputLabel for="confirmpassword" value="Confirmar contraseña:" style="font-weight:bold"/>
                 <p:password id="confirmpassword" feedback="true" value="#{registerView.confirmPassword}" required="true" requiredMessage="Por favor, confirma tu contraseña."/>
                 <p:message for="confirmpassword"/>
+
+                <h:outputLabel for="telefono" value="Número de Teléfono:" style="font-weight:bold"/>
+                <p:inputText id="telefono" value="#{registerView.telefono}" required="true" requiredMessage="Por favor, introduce tu número de teléfono." maxlength="15"/>
+                <p:message for="telefono"/>
+
+                <h:outputLabel for="nif" value="NIF:" style="font-weight:bold"/>
+                <p:inputText id="nif" value="#{registerView.nif}" required="true" requiredMessage="Por favor, introduce tu NIF." maxlength="15"/>
+                <p:message for="nif"/>
+                
+                <h:outputLabel for="domicilio" value="Domicilio:" style="font-weight:bold"/>
+                <p:inputText id="domicilio" value="#{registerView.domicilio}" required="true" requiredMessage="Por favor, introduce tu domicilio." maxlength="64"/>
+                <p:message for="domicilio"/> 
+                
+                <h:outputLabel for="horarioestablecimiento" value="Horario Establecimiento (ej. LV 8:00-22:00h):" style="font-weight:bold"/>
+                <p:inputText id="horarioestablecimiento" value="#{registerView.horarioEstablecimiento}" required="true" requiredMessage="Por favor, introduce el horario del establecimiento. (ej. LV 8:00-22:00h)" maxlength="20"/>
+                <p:message for="horarioestablecimiento"/> 
                 
                 </h:panelGrid>
                 <p:commandButton action="#{registerView.registerOwner}" update="grid" value="Regístrate!" icon="ui-icon-pencil"/>
