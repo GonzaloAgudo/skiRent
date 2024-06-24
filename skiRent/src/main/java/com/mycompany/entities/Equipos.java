@@ -55,7 +55,7 @@ public class Equipos implements Serializable {
     private String horarioEstablecimiento;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precio_dia")
-    private Double precioDia;
+    private int precioDia;
 
     public Equipos() {
     }
@@ -104,11 +104,11 @@ public class Equipos implements Serializable {
         this.horarioEstablecimiento = horarioEstablecimiento;
     }
 
-    public Double getPrecioDia() {
+    public int getPrecioDia() {
         return precioDia;
     }
 
-    public void setPrecioDia(Double precioDia) {
+    public void setPrecioDia(int precioDia) {
         this.precioDia = precioDia;
     }
 
