@@ -99,19 +99,7 @@ public class Reservar implements Serializable{
 
     public void setPrecioDia(float precioDia) {
         this.precioDia = precioDia;
-    }    
-    
-    
-    public List<String> getCiudadesFiltradas(String query) {
-        List<String> ciudades = em.createQuery("SELECT DISTINCT e.ciudad FROM Equipos e", String.class).getResultList();
-        List<String> ciudadesFiltradas = new ArrayList<>();
-        for (String ciudad : ciudades) {
-            if (ciudad.toLowerCase().contains(query.toLowerCase())) {
-                ciudadesFiltradas.add(ciudad);
-            }
-        }
-        return ciudadesFiltradas;
-    }
+    }   
 
     public List<Equipos> getEquiposFiltrados() {
         if (ciudadEquipoSeleccionada == null || ciudadEquipoSeleccionada.isEmpty()) {

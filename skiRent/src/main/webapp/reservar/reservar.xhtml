@@ -5,21 +5,20 @@
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
+
     <body>
+
         <ui:composition template="./../WEB-INF/template.xhtml">
+
             <ui:define name="content">
                 <h2>Introduzca el nombre de una ciudad</h2>
                 <h:form>
-                    <p:autoComplete value="#{reservar.ciudadEquipo}" 
-                                    completeMethod="#{reservar.getCiudadesFiltradas}"
-                                    var="ciudad"
-                                    itemLabel="#{ciudad}"
-                                    itemValue="#{ciudad}"
-                                    forceSelection="true"
-                                    converter="javax.faces.String"/>
-                    <p:commandButton id="equipos" value="Buscar" action="equipos" update="@form" />
+                    <h:inputText value="#{reservar.ciudadEquipoSeleccionada}" required="true" />
+                    <p:commandButton id="equipos" value="Selecciona una ciudad" action="equipos" update="@form" />
                 </h:form>
             </ui:define>
+
         </ui:composition>
+
     </body>
 </html>

@@ -13,15 +13,24 @@
 
             <ui:define name="content">
                 <h:form>
-                <h:selectOneRadio value="#{equipoBackingBean.equipoId}"
-                    layout="pageDirection">
-                <c:forEach items="#{equipoClientBean.equipos}" var="m">
-                <f:selectItem itemValue="#{m.id}" itemLabel="#{m.tipoEquipo}"/>
-                </c:forEach>
+                <br></br>
+                <p:commandButton value="Nuevo Equipo" action="addequipo" />
+                <br></br>
+                <br></br>
+                <h:selectOneRadio value="#{equipoBackingBean.equipoId}" layout="pageDirection" id="equipoRadio">
+                    <c:forEach items="#{equipoClientBean.equipos}" var="m">
+                        <f:selectItem itemValue="#{m.id}" itemLabel="#{m.tipoEquipo}"/>
+                    </c:forEach>
                 </h:selectOneRadio>
                 <br></br>
                 <p:commandButton value="Detalles" action="equipo" />
-                <p:commandButton value="Nuevo Equipo" action="addequipo" />
+                
+                <p:commandButton value="Borrar" type="button" onclick="PF('confirmDialog').show();" />
+
+                <p:confirmDialog header="Confirmación" message="¿Estás seguro de que deseas borrar este equipo?" widgetVar="confirmDialog" appendTo="@(body)">
+                    <p:commandButton value="Sí" oncomplete="PF('confirmDialog').hide();" actionListener="#{equipoClientBean.deleteEquipo()}" update="equipoRadio" />
+                    <p:commandButton value="No" onclick="PF('confirmDialog').hide();" type="button" />
+                </p:confirmDialog>
                 </h:form>
             </ui:define>
 
@@ -29,3 +38,4 @@
 
     </body>
 </html>
+
