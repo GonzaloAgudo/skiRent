@@ -36,6 +36,8 @@ public class Reservar implements Serializable{
     String direccionEquipo;
     String horarioEstablecimiento;
     float precioDia;
+    String tarjeta = "";
+    Date fechaReserva = new Date();
 
     public EntityManager getEm() {
         return em;
@@ -99,7 +101,24 @@ public class Reservar implements Serializable{
 
     public void setPrecioDia(float precioDia) {
         this.precioDia = precioDia;
-    }   
+    }
+
+    public String getTarjeta() {
+        return tarjeta;
+    }
+
+    public void setTarjeta(String tarjeta) {
+        this.tarjeta = tarjeta;
+    }
+
+    public Date getFechaReserva() {
+        return fechaReserva;
+    }
+
+    public void setFechaReserva(Date fechaReserva) {
+        this.fechaReserva = fechaReserva;
+    }    
+    
 
     public List<Equipos> getEquiposFiltrados() {
         if (ciudadEquipoSeleccionada == null || ciudadEquipoSeleccionada.isEmpty()) {
@@ -120,6 +139,17 @@ public class Reservar implements Serializable{
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(FacesMessage.SEVERITY_ERROR, "Equipo no encontrado", null));
         }
         return "confirmar";
+    }
+    
+    public Equipos obtenerEquipoPorId(int idEspacio) {
+        try {
+            return em.createNamedQuery("Equipos.findAllDetailsById", Equipos.class)
+                     .setParameter("id", idEquipo)
+                     .getSingleResult();
+        } catch (NoResultException e) {
+            
+            return null;
+        }
     }
 
 }

@@ -13,17 +13,8 @@
             <ui:define name="content">
                 <c:choose>
                 <c:when test="#{reservar.idEquipo == 'none'}">
-                    <h2>No se ha encontrado equipo, elija otro horario</h2>
+                    <h2>No se ha encontrado equipo, elija otra ciudad</h2>
 
-                    <h:form>
-                    Nombre: #{reservar.obtenerEquipoPorId(reservar.idEquipo).tipoEquipo}<br/><br/>
-                    Ciudad: #{reservar.obtenerEquipoPorId(reservar.idEquipo).ciudad}<br/><br/>
-                    Direccion: #{reservar.obtenerEquipoPorId(reservar.idEquipo).direccion}<br/><br/>
-                    Horario: #{reservar.obtenerEquipoPorId(reservar.idEquipo).horarioEstablecimiento}<br/><br/>
-                    Precio/dia: #{reservar.obtenerEquipoPorId(reservar.idEquipo).precioDia}<br/><br/>
-
-                    <p:commandButton id="back" value="Atrás" action="espacios" icon="ui-iconarrowrefresh-1-w"/>
-                    </h:form>
                 </c:when>
                 <c:otherwise>
                     
@@ -36,7 +27,7 @@
                     Horario: #{reservar.obtenerEquipoPorId(reservar.idEquipo).horarioEstablecimiento}<br/><br/>
                     Precio/dia: #{reservar.obtenerEquipoPorId(reservar.idEquipo).precioDia}<br/><br/>
 
-                    <p:commandButton id="home" value="Inicio" action="goHome" icon="ui-icon-home"/>
+                    <p:commandButton id="next" value="Comprar" action="comprar"/>
                     <p:commandButton id="back" value="Atrás" action="equipos" icon="ui-iconarrowrefresh-1-w"/>
                     </h:form>
                 </c:otherwise>

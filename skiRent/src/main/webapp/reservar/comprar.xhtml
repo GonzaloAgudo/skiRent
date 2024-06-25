@@ -10,25 +10,23 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h2><h:outputText value="Introduzca información del pago"/></h2>
+                <h2><h:outputText value="Introduzca la información para la reserva"/></h2>
                 <h:form prependId="false">
-                <h:panelGrid columns="3" id="grid">
-                <p:outputLabel for="precio" value="Precio"/>
-                <p:inputNumber id="precio" value="#{booking.precio}" decimalSeparator="," thousandSeparator="."
-                minValue="0.00" maxValue="1000.00"/>
-                <p:message for="precio" style="color:blue"/>
+                <h:panelGrid columns="2" id="grid">
+                    
+                <p:outputLabel for="fechareserva" value="Fecha de reserva (día/mes/año)"/>
+                <p:datePicker id="fechareserva" view="date" value="#{reservar.fechaReserva}" pattern="dd/MM/yyyy" locale="es" yearNavigator="true"/>
+                <p:message for="fechareserva"/>
+                
+                <br></br>       
+                
                 <p:outputLabel for="tarjeta" value="Tarjeta de credito"/>
-                <p:inputMask id="tarjeta" value="#{booking.tarjeta}" mask="9999-9999-9999-9999" required="true"/>
-                <p:message for="tarjeta"/>
-                <p:outputLabel for="fecha" value="Fecha de expiracion (mes/año)"/>
-                <p:datePicker id="fecha" view="month" value="#{booking.fecha}" pattern="MM/yyyy" locale="es"
-                yearNavigator="true" yearRange="2020:2030" />
-                <p:message for="fecha"/>
+                <p:inputMask id="tarjeta" value="#{reservar.tarjeta}" mask="9999-9999-9999-9999" required="true"/>
+                <p:message for="tarjeta"/>   
 
                 </h:panelGrid>
                 <p/><p:commandButton id="next" value="Confirmar" action="resumen" update="grid"/>
-                <p:commandButton id="back" value="Atrás" action="confirmar" icon="ui-icon-arrowrefresh-1-w"
-                immediate="true"/>
+                <p:commandButton id="back" value="Atrás" action="confirmar" icon="ui-icon-arrowrefresh-1-w" immediate="true"/>
                 </h:form>
             </ui:define>
 

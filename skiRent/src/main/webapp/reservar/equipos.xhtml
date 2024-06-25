@@ -8,22 +8,30 @@
     <body>
         <ui:composition template="./../WEB-INF/template.xhtml">
             <ui:define name="content">
-                <h2>Selecciona un equipo </h2>
-                <h:form>
-                    <h:selectOneRadio value="#{reservar.idEquipo}"
-                                      layout="pageDirection"
-                                      required="true">
-                        <f:selectItems value="#{reservar.equiposFiltrados}"
-                                       var="m"
-                                       itemValue="#{m.id}"
-                                       itemLabel="#{m.tipoEquipo}"/>
-                    </h:selectOneRadio>
-                    <br/>
-                    <p:commandButton id="shows" value="Confirmar" action="#{reservar.seleccionarEquipo()}" />
-                    <p:commandButton id="back" value="Atrás" action="reservar" immediate="true" icon="ui-icon-arrowrefresh-1-w" />
-                </h:form>
+                <h2>Selecciona un equipo en #{reservar.ciudadEquipoSeleccionada}</h2>
+                
+                <h:panelGroup rendered="#{empty reservar.equiposFiltrados}">
+                    <h3>No hay equipos en #{reservar.ciudadEquipoSeleccionada}.</h3>
+                </h:panelGroup>
+
+                <h:panelGroup rendered="#{not empty reservar.equiposFiltrados}">
+                    <h:form>
+                        <h:selectOneRadio value="#{reservar.idEquipo}"
+                                          layout="pageDirection"
+                                          required="true">
+                            <f:selectItems value="#{reservar.equiposFiltrados}"
+                                           var="m"
+                                           itemValue="#{m.id}"
+                                           itemLabel="#{m.tipoEquipo}"/>
+                        </h:selectOneRadio>
+                        <br/>
+                        <p:commandButton id="shows" value="Confirmar" action="#{reservar.seleccionarEquipo()}" />
+                        <p:commandButton id="back" value="Atrás" action="reservar" immediate="true" icon="ui-icon-arrowrefresh-1-w" />
+                    </h:form>
+                </h:panelGroup>
             </ui:define>
         </ui:composition>
     </body>
 </html>
+
 
