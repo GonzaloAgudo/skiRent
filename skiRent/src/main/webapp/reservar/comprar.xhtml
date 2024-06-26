@@ -21,8 +21,10 @@
                 <br></br>       
                 
                 <p:outputLabel for="tarjeta" value="Tarjeta de credito"/>
-                <p:inputMask id="tarjeta" value="#{reservar.tarjeta}" mask="9999-9999-9999-9999" required="true"/>
-                <p:message for="tarjeta"/>   
+                <p:inputMask id="tarjeta" value="#{reservar.tarjeta}" mask="9999999999999999" required="true"/>
+                <p:message for="tarjeta"/>
+                
+                <h:messages globalOnly="true" style="color: red;"/>
 
                 </h:panelGrid>
                 <p:commandButton value="Confirmar" action="#{reservaClientBean.guardarReserva}" icon="ui-icon-disk" update="@form"/>

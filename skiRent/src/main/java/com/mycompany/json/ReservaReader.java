@@ -10,6 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Type;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import javax.json.Json;
 import javax.json.stream.JsonParser;
 import javax.ws.rs.Consumes;
@@ -36,6 +38,7 @@ public class ReservaReader implements MessageBodyReader<Reservas> {
     public Reservas readFrom(Class<Reservas> type, Type type1, Annotation[] antns, MediaType mt, MultivaluedMap<String, String> mm, InputStream in) throws IOException, WebApplicationException {
         Reservas reserva = new Reservas();
         JsonParser parser = Json.createParser(in);
+        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         
         while (parser.hasNext()) {
             switch (parser.next()) {
@@ -71,6 +74,19 @@ public class ReservaReader implements MessageBodyReader<Reservas> {
                 
                 case "precioDia":
                     reserva.setPrecio(parser.getInt());
+                break;
+                
+                case "numTarjeta":
+                    reserva.setNumTarjeta(parser.getString());
+                break;
+                
+                case "fechaReserva":
+                    try {
+                        Date fecha = dateFormat.parse(parser.getString());
+                        reserva.setFechaReserva(fecha);
+                    } catch (Exception e) {
+                        throw new IOException("Error parsing date", e);
+                    }
                 break;
                 
                 default:

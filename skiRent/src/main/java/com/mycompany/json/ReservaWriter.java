@@ -33,15 +33,19 @@ public class ReservaWriter implements MessageBodyWriter<Reservas> {
     public void writeTo(Reservas reserva, Class<?> type, Type genericType, Annotation[] annotations, MediaType mediaType, MultivaluedMap<String, Object> httpHeaders, OutputStream entityStream) throws IOException, WebApplicationException {
         JsonGenerator gen = Json.createGenerator(entityStream);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
+        
+        System.out.println("Tarjeta write-to " + reserva.getNumTarjeta());
+        System.out.println("Fecha write-to " + dateFormat.format(reserva.getFechaReserva()));
+        
         gen.writeStartObject()
             .write("emailCliente", reserva.getEmailCliente())
             .write("tipoEquipo", reserva.getTipoEquipo())
             .write("ciudad", reserva.getCiudad())
             .write("direccion", reserva.getDireccion())
             .write("horarioEstablecimiento", reserva.getHorarioEstablecimiento())
-            .write("precio", reserva.getPrecio())
-            .write("fechaReserva", dateFormat.format(reserva.getFechaReserva()))
+            .write("precioDia", reserva.getPrecio())
             .write("numTarjeta", reserva.getNumTarjeta())
+            .write("fechaReserva", dateFormat.format(reserva.getFechaReserva()))
             .writeEnd();
         gen.flush();
     }

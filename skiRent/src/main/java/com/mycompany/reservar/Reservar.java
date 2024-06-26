@@ -39,8 +39,8 @@ public class Reservar implements Serializable{
     int precioDia;
     
     int idReserva;
-    String tarjeta = "";
-    Date fechaReserva = new Date();
+    String tarjeta;
+    Date fechaReserva;
     String emailCliente;
 
     public EntityManager getEm() {
