@@ -6,6 +6,7 @@
 package com.mycompany.reservar;
 
 import com.mycompany.entities.Equipos;
+import com.mycompany.entities.Reservas;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -35,9 +36,12 @@ public class Reservar implements Serializable{
     String ciudadEquipoSeleccionada;
     String direccionEquipo;
     String horarioEstablecimiento;
-    float precioDia;
+    int precioDia;
+    
+    int idReserva;
     String tarjeta = "";
     Date fechaReserva = new Date();
+    String emailCliente;
 
     public EntityManager getEm() {
         return em;
@@ -95,11 +99,11 @@ public class Reservar implements Serializable{
         this.horarioEstablecimiento = horarioEstablecimiento;
     }
 
-    public float getPrecioDia() {
+    public int getPrecioDia() {
         return precioDia;
     }
 
-    public void setPrecioDia(float precioDia) {
+    public void setPrecioDia(int precioDia) {
         this.precioDia = precioDia;
     }
 
@@ -117,7 +121,23 @@ public class Reservar implements Serializable{
 
     public void setFechaReserva(Date fechaReserva) {
         this.fechaReserva = fechaReserva;
-    }    
+    }
+
+    public String getEmailCliente() {
+        return emailCliente;
+    }
+
+    public void setEmailCliente(String emailCliente) {
+        this.emailCliente = emailCliente;
+    }
+
+    public int getIdReserva() {
+        return idReserva;
+    }
+
+    public void setIdReserva(int idReserva) {
+        this.idReserva = idReserva;
+    }
     
 
     public List<Equipos> getEquiposFiltrados() {
@@ -145,6 +165,17 @@ public class Reservar implements Serializable{
         try {
             return em.createNamedQuery("Equipos.findAllDetailsById", Equipos.class)
                      .setParameter("id", idEquipo)
+                     .getSingleResult();
+        } catch (NoResultException e) {
+            
+            return null;
+        }
+    }    
+    
+    public Reservas obtenerReservaPorId(int idReserva) {
+        try {
+            return em.createNamedQuery("Reservas.findAllDetailsById", Reservas.class)
+                     .setParameter("id", idReserva)
                      .getSingleResult();
         } catch (NoResultException e) {
             

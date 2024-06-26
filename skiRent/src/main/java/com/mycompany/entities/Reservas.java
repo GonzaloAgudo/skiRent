@@ -38,7 +38,8 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "Reservas.findByHorarioEstablecimiento", query = "SELECT r FROM Reservas r WHERE r.horarioEstablecimiento = :horarioEstablecimiento"),
     @NamedQuery(name = "Reservas.findByPrecio", query = "SELECT r FROM Reservas r WHERE r.precio = :precio"),
     @NamedQuery(name = "Reservas.findByFechaReserva", query = "SELECT r FROM Reservas r WHERE r.fechaReserva = :fechaReserva"),
-    @NamedQuery(name = "Reservas.findByNumTarjeta", query = "SELECT r FROM Reservas r WHERE r.numTarjeta = :numTarjeta")})
+    @NamedQuery(name = "Reservas.findByNumTarjeta", query = "SELECT r FROM Reservas r WHERE r.numTarjeta = :numTarjeta"),
+    @NamedQuery(name = "Reservas.findAllDetailsById", query = "SELECT r FROM Reservas r WHERE r.id = :id")})
 public class Reservas implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -64,11 +65,11 @@ public class Reservas implements Serializable {
     private String horarioEstablecimiento;
     // @Max(value=?)  @Min(value=?)//if you know range of your decimal fields consider using these annotations to enforce field validation
     @Column(name = "precio")
-    private Double precio;
+    private int precio;
     @Column(name = "fecha_reserva")
     @Temporal(TemporalType.DATE)
     private Date fechaReserva;
-    @Size(max = 16)
+    @Size(max = 32)
     @Column(name = "num_tarjeta")
     private String numTarjeta;
 
@@ -127,11 +128,11 @@ public class Reservas implements Serializable {
         this.horarioEstablecimiento = horarioEstablecimiento;
     }
 
-    public Double getPrecio() {
+    public int getPrecio() {
         return precio;
     }
 
-    public void setPrecio(Double precio) {
+    public void setPrecio(int precio) {
         this.precio = precio;
     }
 

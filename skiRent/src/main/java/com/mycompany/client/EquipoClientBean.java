@@ -8,6 +8,8 @@ package com.mycompany.client;
 import com.mycompany.json.EquipoReader;
 import com.mycompany.json.EquipoWriter;
 import com.mycompany.entities.Equipos;
+import com.mycompany.entities.Reservas;
+import com.mycompany.json.ReservaWriter;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
@@ -31,6 +33,7 @@ public class EquipoClientBean {
     
     Client client;
     WebTarget target;
+    
     @PostConstruct
     public void init() {
     client = ClientBuilder.newClient();
@@ -77,5 +80,4 @@ public class EquipoClientBean {
         
         target.register(EquipoWriter.class).request().post(Entity.entity(m, MediaType.APPLICATION_JSON));
     }
-    
 }

@@ -23,7 +23,7 @@ public class EquipoBackingBean implements Serializable{
     String direccion;
     String horarioEstablecimiento;
     int precioDia;
-
+        
     public int getEquipoId() {
         return equipoId;
     }
@@ -70,5 +70,5 @@ public class EquipoBackingBean implements Serializable{
 
     public void setPrecioDia(int precioDia) {
         this.precioDia = precioDia;
-    }    
+    }
 }

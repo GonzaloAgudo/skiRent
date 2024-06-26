@@ -1,46 +1,38 @@
-<?xml version='1.0' encoding='UTF-8' ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
-
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
     <body>
-
         <ui:composition template="./../WEB-INF/template.xhtml">
-
             <ui:define name="content">
                 <h2><h:outputText value="Reserva confirmada!!!"/></h2>
                 <h:form>
-                    <p:panelGrid id="print" columns="2">
-                        <h:outputText value="Nombre del equipo a reservar:"/>
-                        <h:outputText value="#{reservar.obtenerEquipoPorId(reservar.idEquipo).tipoEquipo}"/>
-                        
-                        <h:outputText value="Ciudad de la reserva:"/>
-                        <h:outputText value="#{reservar.obtenerEquipoPorId(reservar.idEquipo).ciudad}"/>
-                        
-                        <h:outputText value="Direccion del establecimiento:"/>
-                        <h:outputText value="#{reservar.obtenerEquipoPorId(reservar.idEquipo).direccion}"/>
-                        
-                        <h:outputText value="Horario del establecimiento:"/>
-                        <h:outputText value="#{reservar.obtenerEquipoPorId(reservar.idEquipo).horarioEstablecimiento}"/>
-                        
-                        <h:outputText value="Precio por el equipo seleccionado:"/>
-                        <h:outputText value="#{reservar.obtenerEquipoPorId(reservar.idEquipo).precioDia}">
-                            <f:convertNumber type="currency"/>
-                        </h:outputText>
-                        
-                        <h:outputText value="Fecha de la reserva a realizar:"/>
-                        <h:outputText value="#{reservar.fechaReserva}">
-                            <f:convertDateTime pattern="dd/MM/yyyy" locale="es"/>
-                        </h:outputText>
-                        
-                        <h:outputText value="Tarjeta de credito:"/>
-                        <h:outputText value="#{reservar.tarjeta}"/>
-                        
+                    <p:panelGrid id="print" columns="1">
+                        <p:panelGrid id="info" columns="4">
+                            <h:outputText value="Nombre: #{reservar.obtenerEquipoPorId(reservar.idEquipo).tipoEquipo}"/>
+                            <h:outputText value="Ciudad: #{reservar.obtenerEquipoPorId(reservar.idEquipo).ciudad}"/>
+                            <h:outputText value="Direccion: #{reservar.obtenerEquipoPorId(reservar.idEquipo).direccion}"/>
+                            <h:outputText value="Horario: #{reservar.obtenerEquipoPorId(reservar.idEquipo).horarioEstablecimiento}"/>
+                        </p:panelGrid>
+
+                        <p:panelGrid columns="2">
+                            <h:outputText value="Precio:"/>
+                            <h:outputText value="#{reservar.obtenerEquipoPorId(reservar.idEquipo).precioDia}">
+                                <f:convertNumber type="currency"/>
+                            </h:outputText>                            
+                            <h:outputText value="Fecha de la reserva:"/>
+                            <h:outputText value="#{reservar.fechaReserva}">
+                                <f:convertDateTime pattern="dd/MM/yyyy" locale="es"/>
+                            </h:outputText>
+                            <h:outputText value="Usuario que hace la reserva:"/>
+                            <h:outputText value="#{loginView.authenticatedUser.email}"/>
+                            <h:outputText value="Tarjeta de credito:"/>
+                            <h:outputText value="#{reservar.tarjeta}"/>
+                        </p:panelGrid>
                     </p:panelGrid>
-                    
+
                     <p:panelGrid columns="2">
                         <h:outputText value="Código QR con tu entrada:" />
                         <p:barcode value="Aquí está tu entrada para #{reservar.seleccionarEquipo()}" type="qr"/>
@@ -50,12 +42,11 @@
                     <p:commandButton value="Imprimir" type="button" icon="ui-icon-print">
                         <p:printer target="print"/>
                     </p:commandButton>
-                
                 </h:form>
             </ui:define>
-
         </ui:composition>
-
     </body>
 </html>
+
+
 

@@ -25,7 +25,7 @@
                 <p:message for="tarjeta"/>   
 
                 </h:panelGrid>
-                <p/><p:commandButton id="next" value="Confirmar" action="resumen" update="grid"/>
+                <p:commandButton value="Confirmar" action="#{reservaClientBean.guardarReserva}" icon="ui-icon-disk" update="@form"/>
                 <p:commandButton id="back" value="Atrás" action="confirmar" icon="ui-icon-arrowrefresh-1-w" immediate="true"/>
                 </h:form>
             </ui:define>
