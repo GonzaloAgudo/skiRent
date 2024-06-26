@@ -1,0 +1,35 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <body>
+        <ui:composition template="./../WEB-INF/template.xhtml">
+            <ui:define name="content">
+                <h:form>
+                    <h2><h:outputText value="Editar Información del equipo #{equipoBackingBean.tipoEquipo}"/></h2>
+                    <p:panelGrid id="info" columns="2">
+                        <h:outputText value="Identificador del equipo: "/>
+                        <h:outputText value="#{equipoBackingBean.equipoId}"/>
+                        <h:outputText value="Tipo de equipo: "/>
+                        <h:inputText value="#{equipoBackingBean.tipoEquipo}"/>
+                        <h:outputText value="Ciudad: "/>
+                        <h:inputText value="#{equipoBackingBean.ciudad}"/>
+                        <h:outputText value="Direccion: "/>
+                        <h:inputText value="#{equipoBackingBean.direccion}"/>
+                        <h:outputText value="Horario del Establecimiento: "/>
+                        <h:inputText value="#{equipoBackingBean.horarioEstablecimiento}"/>
+                        <h:outputText value="Precio por Dia: "/>
+                        <h:inputText value="#{equipoBackingBean.precioDia}"/>
+                    </p:panelGrid>
+                    <br></br>
+                    <p:commandButton value="Guardar" action="#{equipoClientBean.updateEquipo()}" icon="ui-icon-disk" update="@form"/>
+                    <p:commandButton value="Atrás" action="equipos" icon="ui-icon-arrowrefresh-1-w"/>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </body>
+</html>
+

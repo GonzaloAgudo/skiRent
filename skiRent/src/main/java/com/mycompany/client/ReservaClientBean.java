@@ -4,6 +4,7 @@ import com.mycompany.entities.Reservas;
 import com.mycompany.reservar.Reservar;
 import com.mycompany.jaas.LoginView;
 import com.mycompany.json.ReservaWriter;
+import com.mycompany.json.ReservaReader;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
@@ -41,6 +42,15 @@ public class ReservaClientBean {
         return reservaTarget
         .request()
         .get(Reservas[].class);
+    }
+    
+    public Reservas getReserva() {
+        return reservaTarget
+            .register(ReservaReader.class)
+            .path("{reservaId}")
+            .resolveTemplate("reservaId", bean.getIdReserva())
+            .request(MediaType.APPLICATION_JSON)
+            .get(Reservas.class);
     }
     
     public void deleteReserva() {

@@ -80,4 +80,34 @@ public class EquipoClientBean {
         
         target.register(EquipoWriter.class).request().post(Entity.entity(m, MediaType.APPLICATION_JSON));
     }
+    
+    
+    public void updateEquipo() {
+        deleteEquipo();
+        
+        Equipos m = new Equipos();
+
+        m.setId(bean.getEquipoId());
+        m.setTipoEquipo(bean.getTipoEquipo());
+        m.setCiudad(bean.getCiudad());
+        m.setDireccion(bean.getDireccion());
+        m.setHorarioEstablecimiento(bean.getHorarioEstablecimiento());
+        m.setPrecioDia(bean.getPrecioDia());
+
+        target.path("{equipoId}")
+            .register(EquipoWriter.class)
+            .resolveTemplate("equipoId", bean.getEquipoId())
+            .request()
+            .put(Entity.entity(m, MediaType.APPLICATION_JSON));
+    }
+
+    public void loadEquipo() {
+        Equipos equipo = getEquipo();
+        bean.setEquipoId(equipo.getId());
+        bean.setTipoEquipo(equipo.getTipoEquipo());
+        bean.setCiudad(equipo.getCiudad());
+        bean.setDireccion(equipo.getDireccion());
+        bean.setHorarioEstablecimiento(equipo.getHorarioEstablecimiento());
+        bean.setPrecioDia(equipo.getPrecioDia());
+    }
 }

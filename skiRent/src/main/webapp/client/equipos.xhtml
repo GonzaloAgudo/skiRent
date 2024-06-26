@@ -24,7 +24,7 @@
                 </h:selectOneRadio>
                 <br></br>
                 <p:commandButton value="Detalles" action="equipo" />
-                
+                <p:commandButton value="Editar" action="#{equipoClientBean.loadEquipo()}" immediate="true" oncomplete="window.location.href='editequipo.xhtml'" />
                 <p:commandButton value="Borrar" type="button" onclick="PF('confirmDialog').show();" />
 
                 <p:confirmDialog header="Confirmación" message="¿Estás seguro de que deseas borrar este equipo?" widgetVar="confirmDialog" appendTo="@(body)">

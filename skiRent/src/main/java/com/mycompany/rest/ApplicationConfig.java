@@ -31,6 +31,7 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.mycompany.json.EquipoReader.class);
         resources.add(com.mycompany.json.EquipoWriter.class);
+        resources.add(com.mycompany.json.ReservaReader.class);
         resources.add(com.mycompany.json.ReservaWriter.class);
         resources.add(com.mycompany.rest.EquiposFacadeREST.class);
         resources.add(com.mycompany.rest.ReservasFacadeREST.class);

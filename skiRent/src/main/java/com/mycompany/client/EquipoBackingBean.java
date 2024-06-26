@@ -71,4 +71,4 @@ public class EquipoBackingBean implements Serializable{
     public void setPrecioDia(int precioDia) {
         this.precioDia = precioDia;
     }
-}
+}   
