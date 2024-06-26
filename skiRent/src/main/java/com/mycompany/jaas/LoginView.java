@@ -60,19 +60,19 @@ public class LoginView implements Serializable{
     
     
     public String logout() {
-    FacesContext context = FacesContext.getCurrentInstance();
-    HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
-    
-    try {
-    this.user = null;
-    request.logout();
-    ((HttpSession) context.getExternalContext().getSession(false)).invalidate();
-    } catch (ServletException e) {
-        System.out.println("Fallo durante el proceso de logout!");
+        FacesContext context = FacesContext.getCurrentInstance();
+        HttpServletRequest request = (HttpServletRequest) context.getExternalContext().getRequest();
+
+        try {
+        this.user = null;
+        request.logout();
+        ((HttpSession) context.getExternalContext().getSession(false)).invalidate();
+        } catch (ServletException e) {
+            System.out.println("Fallo durante el proceso de logout!");
+        }
+
+        return "/index?faces-redirect=true";
     }
-    
-    return "/index?faces-redirect=true";
-}
     
     
     public Users getAuthenticatedUser() {

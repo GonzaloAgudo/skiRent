@@ -48,6 +48,10 @@ public class ReservaReader implements MessageBodyReader<Reservas> {
                 case "id":
                     reserva.setId(parser.getInt());
                 break;
+                
+                case "emailCliente":
+                    reserva.setEmailCliente(parser.getString());
+                break;
                     
                 case "tipoEquipo":
                     reserva.setTipoEquipo(parser.getString());

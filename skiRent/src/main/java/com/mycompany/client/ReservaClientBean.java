@@ -22,6 +22,7 @@ public class ReservaClientBean {
     
     @Inject
     Reservar bean;
+    @Inject    
     LoginView login;
     
     private Client client;
@@ -62,7 +63,7 @@ public class ReservaClientBean {
     
     public String guardarReserva() {
         Reservas reserva = new Reservas();
-        //reserva.setEmailCliente(login.getAuthenticatedUser().getEmail());
+        reserva.setEmailCliente(login.getAuthenticatedUser().getEmail());
         reserva.setTipoEquipo(bean.getTipoEquipo());
         reserva.setCiudad(bean.getCiudadEquipoSeleccionada());
         reserva.setDireccion(bean.obtenerEquipoPorId(bean.getIdEquipo()).getDireccion());
@@ -71,15 +72,6 @@ public class ReservaClientBean {
         reserva.setFechaReserva(bean.getFechaReserva());
         reserva.setNumTarjeta(bean.getTarjeta());
         
-        
-        //System.out.println("Usuario Reserva " + login.getAuthenticatedUser().getEmail());
-        System.out.println("TipoEquipo " + bean.getTipoEquipo());
-        System.out.println("Ciudad " + bean.getCiudadEquipoSeleccionada());
-        System.out.println("Direccion " + bean.obtenerEquipoPorId(bean.getIdEquipo()).getDireccion());
-        System.out.println("Horario Establecimiento " + bean.obtenerEquipoPorId(bean.getIdEquipo()).getHorarioEstablecimiento());
-        System.out.println("Precio " + bean.obtenerEquipoPorId(bean.getIdEquipo()).getPrecioDia());
-        System.out.println("Fecha Reserva " + bean.getFechaReserva());
-        System.out.println("Numero Tarjeta " + bean.getTarjeta());
 
         reservaTarget.register(ReservaWriter.class).request().post(Entity.entity(reserva, MediaType.APPLICATION_JSON));
         

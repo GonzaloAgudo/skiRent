@@ -34,6 +34,7 @@ public class ReservaWriter implements MessageBodyWriter<Reservas> {
         JsonGenerator gen = Json.createGenerator(entityStream);
         SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
         gen.writeStartObject()
+            .write("emailCliente", reserva.getEmailCliente())
             .write("tipoEquipo", reserva.getTipoEquipo())
             .write("ciudad", reserva.getCiudad())
             .write("direccion", reserva.getDireccion())
