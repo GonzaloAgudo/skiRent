@@ -1,0 +1,38 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Verificar Propietarios</title>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="./WEB-INF/template.xhtml">
+
+            <ui:define name="content">
+                <h:form id="verificarPropietariosForm">
+                    <h1>Lista de Propietarios No Verificados</h1>
+                    
+                    <p:dataTable value="#{adminBean.propietariosNoVerificados}" var="propietario" emptyMessage="No hay propietarios no verificados">
+                        <p:column headerText="Email">
+                            <h:outputText value="#{propietario.email}" />
+                        </p:column>
+                        <p:column headerText="Nombre">
+                            <h:outputText value="#{propietario.name}" />
+                        </p:column>
+                        <p:column headerText="Acción">
+                            <p:commandButton value="Autorizar" actionListener="#{adminBean.autorizarUsuario(propietario.email)}" update="@form"/>
+                        </p:column>
+                    </p:dataTable>
+                </h:form>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+
+
+

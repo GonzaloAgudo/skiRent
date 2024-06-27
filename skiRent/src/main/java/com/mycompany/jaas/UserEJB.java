@@ -2,6 +2,7 @@ package com.mycompany.jaas;
 
 import com.mycompany.entities.UserGroups;
 import com.mycompany.entities.Users;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -65,6 +66,19 @@ public class UserEJB {
             }
             em.remove(user);
         }
-    }    
+    }
+
+    public List<Users> obtenerPropietariosNoVerificados() {
+        TypedQuery<Users> query = em.createQuery("SELECT u FROM Users u WHERE u.esVerificado = false", Users.class);
+        return query.getResultList();
+    }
+
+    public void actualizarVerificacionUsuario(String email, boolean esVerificado) {
+        Users usuario = em.find(Users.class, email);
+        if (usuario != null) {
+            usuario.setEsVerificado(esVerificado);
+            em.merge(usuario);
+        }
+    }
 }
 
