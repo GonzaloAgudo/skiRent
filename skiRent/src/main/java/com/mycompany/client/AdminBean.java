@@ -47,4 +47,9 @@ public class AdminBean implements Serializable {
         userEJB.eliminarUsuarioPorEmail(email);
         cargarTodosPropietarios(); // Recargar la lista después de la eliminación
     }
+    
+    public void autorizarUsuario(String email) {
+        userEJB.actualizarVerificacionUsuario(email, true);
+        cargarPropietariosNoVerificados(); // Recargar la lista después de la autorización
+    }
 }
