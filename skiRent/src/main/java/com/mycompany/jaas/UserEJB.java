@@ -1,8 +1,3 @@
-    /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package com.mycompany.jaas;
 
 import com.mycompany.entities.UserGroups;
@@ -54,7 +49,22 @@ public class UserEJB {
         try {
             user = query.getSingleResult();
         } catch (Exception e) {
+            e.printStackTrace();
         }
         return user;
-    }
+    }    
+    
+    public void eliminarUsuario(Users user) {
+        if (user != null) {
+            UserGroups group = em.find(UserGroups.class, user.getEmail());
+            if (group != null) {
+                em.remove(group);
+            }
+            if (!em.contains(user)) {
+                user = em.merge(user);
+            }
+            em.remove(user);
+        }
+    }    
 }
+

@@ -8,8 +8,6 @@ package com.mycompany.client;
 import com.mycompany.json.EquipoReader;
 import com.mycompany.json.EquipoWriter;
 import com.mycompany.entities.Equipos;
-import com.mycompany.entities.Reservas;
-import com.mycompany.json.ReservaWriter;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
@@ -67,6 +65,13 @@ public class EquipoClientBean {
          .delete();
     }
     
+    public void deleteEquipoById(int equipoId) {
+    target.path("{equipoId}")
+        .resolveTemplate("equipoId", equipoId)
+        .request()
+        .delete();
+}
+    
     public void addEquipo() {
         Equipos m = new Equipos();
         
@@ -82,32 +87,42 @@ public class EquipoClientBean {
     }
     
     
-    public void updateEquipo() {
-        deleteEquipo();
-        
-        Equipos m = new Equipos();
+   public void updateEquipo() {
+        // Carga el equipo existente
+        Equipos equipo = getEquipo();
 
-        m.setId(bean.getEquipoId());
-        m.setTipoEquipo(bean.getTipoEquipo());
-        m.setCiudad(bean.getCiudad());
-        m.setDireccion(bean.getDireccion());
-        m.setHorarioEstablecimiento(bean.getHorarioEstablecimiento());
-        m.setPrecioDia(bean.getPrecioDia());
+        if (equipo == null) {
+            // Si el equipo no existe, manejar el error apropiadamente
+            System.out.println("Equipo no encontrado con ID: " + bean.getEquipoId());
+            return;
+        }
 
+        // Actualiza los campos necesarios
+        equipo.setTipoEquipo(bean.getTipoEquipo());
+        equipo.setCiudad(bean.getCiudad());
+        equipo.setDireccion(bean.getDireccion());
+        equipo.setHorarioEstablecimiento(bean.getHorarioEstablecimiento());
+        equipo.setPrecioDia(bean.getPrecioDia());
+
+        // Realiza la actualización del equipo existente
         target.path("{equipoId}")
             .register(EquipoWriter.class)
             .resolveTemplate("equipoId", bean.getEquipoId())
             .request()
-            .put(Entity.entity(m, MediaType.APPLICATION_JSON));
+            .put(Entity.entity(equipo, MediaType.APPLICATION_JSON));
     }
 
+
     public void loadEquipo() {
+        
         Equipos equipo = getEquipo();
+        
         bean.setEquipoId(equipo.getId());
         bean.setTipoEquipo(equipo.getTipoEquipo());
         bean.setCiudad(equipo.getCiudad());
         bean.setDireccion(equipo.getDireccion());
         bean.setHorarioEstablecimiento(equipo.getHorarioEstablecimiento());
         bean.setPrecioDia(equipo.getPrecioDia());
+        
     }
 }

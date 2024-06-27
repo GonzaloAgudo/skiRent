@@ -52,13 +52,13 @@
                     <p:menuitem value="Reservar" action="reservar" icon="ui-icon-cart"/>
                     <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-person"/>
                     <p:menuitem value="Gestionar Reservas" outcome="/reservas/reservas.xhtml" icon="ui-icon-clipboard"/>
-                    <p:menuitem value="Eliminar Cuenta " outcome="/index.xhtml" icon="ui-icon-trash"/>
+                    <p:menuitem value="Eliminar Cuenta " outcome="/eliminarCuenta.xhtml" icon="ui-icon-trash"/>
                 </p:submenu>
                 
                 <p:submenu label ="Propietario" rendered="#{request.isUserInRole('admin') or request.isUserInRole('owners')}">
                     <p:menuitem value="Gestionar Equipos" outcome="/client/equipos.xhtml" icon="ui-icon-contact"/>
                     <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-person"/>
-                    <p:menuitem value="Eliminar Cuenta " outcome="/index.xhtml" icon="ui-icon-trash"/>
+                    <p:menuitem value="Eliminar Cuenta " outcome="/eliminarCuenta.xhtml" icon="ui-icon-trash"/>
                 </p:submenu>
                 
                 <p:submenu label ="Administrador" rendered="#{request.isUserInRole('admin')}">
