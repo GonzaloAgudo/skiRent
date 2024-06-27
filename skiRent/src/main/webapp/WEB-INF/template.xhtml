@@ -55,7 +55,7 @@
                     <p:menuitem value="Eliminar Cuenta " outcome="/eliminarCuenta.xhtml" icon="ui-icon-trash"/>
                 </p:submenu>
                 
-                <p:submenu label ="Propietario" rendered="#{login.authenticatedUser.es_verificado and request.isUserInRole('owners')}">
+                <p:submenu label ="Propietario" rendered="#{loginView.authenticatedUser.esVerificado == true and request.isUserInRole('owners')}">
                     <p:menuitem value="Gestionar Equipos" outcome="/client/equipos.xhtml" icon="ui-icon-contact"/>
                     <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-person"/>
                     <p:menuitem value="Eliminar Cuenta " outcome="/eliminarCuenta.xhtml" icon="ui-icon-trash"/>

@@ -13,7 +13,7 @@
                 <h:outputText value="Mostrando #{usersFacadeREST.countREST()} usuarios"/>
                 
                 <!-- Mostrar mensaje si la cuenta es temporal -->
-                <h:panelGroup rendered="#{not login.authenticatedUser.es_verificado and request.isUserInRole('owners')}">
+                <h:panelGroup rendered="#{not loginView.authenticatedUser.esVerificado and request.isUserInRole('owners')}">
                     <h1 style="font-size: 40px; color: red; text-align: center; margin-top: 20px;">ESTA CUENTA ESTÁ PENDIENTE DE VERIFICAR</h1>
                 </h:panelGroup>
             </ui:define>
