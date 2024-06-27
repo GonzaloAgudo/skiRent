@@ -10,27 +10,30 @@
         <ui:composition template="./../WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:form>
+
+                <!-- Verificar la condición antes de mostrar el contenido -->
+                <h:panelGroup rendered="#{reservaClientBean.reserva.emailCliente eq loginView.authenticatedUser.email}">
+
                     <h2><h:outputText value="Información de la reserva #{reservaClientBean.reserva.tipoEquipo}"/></h2>
-                <p:panelGrid id="info" columns="2">
-                <h:outputText value="Identificador del equipo: "/>
-                <h:outputText value="#{reservaClientBean.reserva.id}"/>
-                <h:outputText value="Tipo de equipo: "/>
-                <h:outputText value="#{reservaClientBean.reserva.tipoEquipo}"/>
-                <h:outputText value="Ciudad: "/>
-                <h:outputText value="#{reservaClientBean.reserva.ciudad}"/>
-                <h:outputText value="Direccion: "/>
-                <h:outputText value="#{reservaClientBean.reserva.direccion}"/>
-                <h:outputText value="Horario del Establecimiento: "/>
-                <h:outputText value="#{reservaClientBean.reserva.horarioEstablecimiento}"/>
-                <h:outputText value="Precio por Dia: "/>
-                <h:outputText value="#{reservaClientBean.reserva.precio}"/>
-                <h:outputText value="Fecha de la Reserva: "/>
-                <h:outputText value="#{reservaClientBean.reserva.fechaReserva}"/>
-                </p:panelGrid>
-                <br></br>
-                <p:commandButton id="back" value="Atrás" action="reservas" icon="ui-icon-arrowrefresh-1-w" immediate="true"/>
-                </h:form>
+                    <p:panelGrid id="info" columns="2">
+                        <h:outputText value="Tipo de equipo: "/>
+                        <h:outputText value="#{reservaClientBean.reserva.tipoEquipo}"/>
+                        <h:outputText value="Ciudad: "/>
+                        <h:outputText value="#{reservaClientBean.reserva.ciudad}"/>
+                        <h:outputText value="Direccion: "/>
+                        <h:outputText value="#{reservaClientBean.reserva.direccion}"/>
+                        <h:outputText value="Horario del Establecimiento: "/>
+                        <h:outputText value="#{reservaClientBean.reserva.horarioEstablecimiento}"/>
+                        <h:outputText value="Precio por Dia: "/>
+                        <h:outputText value="#{reservaClientBean.reserva.precio}"/>
+                        <h:outputText value="Fecha de la Reserva: "/>
+                        <h:outputText value="#{reservaClientBean.reserva.fechaReserva}"/>
+                    </p:panelGrid>
+                    <br></br>
+                    <p:commandButton id="back" value="Atrás" action="reservas" icon="ui-icon-arrowrefresh-1-w" immediate="true"/>
+
+                </h:panelGroup>
+
             </ui:define>
 
         </ui:composition>

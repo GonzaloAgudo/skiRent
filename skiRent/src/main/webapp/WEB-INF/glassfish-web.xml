@@ -19,7 +19,9 @@
     
     <security-role-mapping>
         <role-name>users</role-name>
-        <group-name>users</group-name>
+        <group-name>users</group-name>        
+        <group-name>admin</group-name>        
+        <group-name>owners</group-name> 
     </security-role-mapping>
     
     <security-role-mapping>
@@ -29,7 +31,8 @@
     
     <security-role-mapping>
         <role-name>owners</role-name>
-        <group-name>owners</group-name>
+        <group-name>owners</group-name>        
+        <group-name>admin</group-name>
     </security-role-mapping>
     
     <parameter-encoding default-charset="UTF-8"/>
