@@ -12,28 +12,39 @@ import javax.annotation.PostConstruct;
 public class AdminBean implements Serializable {
     @EJB
     private UserEJB userEJB;
-    
+
     private List<Users> propietariosNoVerificados;
+    private List<Users> todosPropietarios;
 
     @PostConstruct
     public void init() {
         cargarPropietariosNoVerificados();
+        cargarTodosPropietarios();
     }
 
     public List<Users> getPropietariosNoVerificados() {
         return propietariosNoVerificados;
     }
 
-    public void cargarPropietariosNoVerificados() {
-        propietariosNoVerificados = userEJB.obtenerPropietariosNoVerificados();
-        System.out.println("Propietarios no verificados: " + propietariosNoVerificados.size());
-        for (Users propietario : propietariosNoVerificados) {
-            System.out.println("Propietario: " + propietario.getEmail());
-        }
+    public List<Users> getTodosPropietarios() {
+        return todosPropietarios;
     }
 
-    public void autorizarUsuario(String email) {
+    public void cargarPropietariosNoVerificados() {
+        propietariosNoVerificados = userEJB.obtenerPropietariosNoVerificados();
+    }
+
+    public void cargarTodosPropietarios() {
+        todosPropietarios = userEJB.obtenerTodosPropietarios();
+    }
+
+    public void verificarPropietario(String email) {
         userEJB.actualizarVerificacionUsuario(email, true);
-        cargarPropietariosNoVerificados(); // Recargar la lista después de la autorización
+        cargarPropietariosNoVerificados(); // Recargar la lista después de la verificación
+    }
+
+    public void eliminarPropietario(String email) {
+        userEJB.eliminarUsuarioPorEmail(email);
+        cargarTodosPropietarios(); // Recargar la lista después de la eliminación
     }
 }

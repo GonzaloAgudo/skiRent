@@ -67,6 +67,20 @@ public class UserEJB {
             em.remove(user);
         }
     }
+    
+    public void eliminarUsuarioPorEmail(String email) {
+        Users usuario = em.find(Users.class, email);
+        if (usuario != null) {
+            // Eliminar el grupo de usuarios asociado
+            UserGroups group = em.find(UserGroups.class, email);
+            if (group != null) {
+                em.remove(group);
+            }
+            // Eliminar el usuario
+            em.remove(usuario);
+        }
+    }
+
 
     public List<Users> obtenerPropietariosNoVerificados() {
         TypedQuery<Users> query = em.createQuery("SELECT u FROM Users u WHERE u.esVerificado = false", Users.class);
@@ -79,6 +93,11 @@ public class UserEJB {
             usuario.setEsVerificado(esVerificado);
             em.merge(usuario);
         }
+    }
+    
+    public List<Users> obtenerTodosPropietarios() {
+        TypedQuery<Users> query = em.createQuery("SELECT u FROM Users u WHERE u.email IN (SELECT ug.email FROM UserGroups ug WHERE ug.groupName = 'owners')", Users.class);
+        return query.getResultList();
     }
 }
 
