@@ -16,20 +16,11 @@
     <h:body>
         <p:layout fullPage="true">
 
-            <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
+            <p:layoutUnit position="north" size="115" resizable="true" closable="true" collapsible="true">
                 
                 <h2><h:outputText value="Aplicación Empresarial - SkiRent" style="color: blue; font-size: 30px;"/></h2>
                 <h:form>
-                    <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('owners')}">
-                        <f:facet name="left">
-                            <p:commandButton type="button" value="New" icon="ui-icon-document"/>
-                            <p:commandButton type="button" value="Open" icon="ui-icon-folder-open" />
-                            <span class="ui-separator">
-                                <span class="ui-icon ui-icon-grip-dotted-vertical" />
-                            </span>
-                            <p:commandButton type="button" title="Save" icon="ui-icon-disk" />
-                        </f:facet>
-
+                    <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('owners') or request.isUserInRole('admin')}">
                         <f:facet name="right">
                             <p:menuButton value="#{loginView.authenticatedUser.name}">
                             <p:menuitem value="Cerrar sesión" action="#{loginView.logout}" icon="ui-iconpower" />
@@ -40,9 +31,9 @@
                 
             </p:layoutUnit>
 
-            <p:layoutUnit position="west" size="200" header="Menú" collapsible="true">
+            <p:layoutUnit position="west" size="230" header="Menú" collapsible="true">
                 <h:form>
-                <p:menu>
+                <p:menu style="width: 100%;">
                 <p:menuitem value="Inicio" outcome="/index.xhtml" icon="ui-icon-home" />
                 <p:menuitem value="Iniciar Sesión" outcome="/login.xhtml" rendered="#{request.isUserInRole('users') == false and request.isUserInRole('owners') == false}" icon="ui-icon-key"/>
                 <p:menuitem value="Registro Clientes" outcome="/registroCliente.xhtml" rendered="#{request.isUserInRole('users')==false}" icon="ui-icon-pencil"/>
