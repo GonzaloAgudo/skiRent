@@ -25,9 +25,11 @@
                 <h:outputText value="#{reservaClientBean.reserva.horarioEstablecimiento}"/>
                 <h:outputText value="Precio por Dia: "/>
                 <h:outputText value="#{reservaClientBean.reserva.precio}"/>
+                <h:outputText value="Fecha de la Reserva: "/>
+                <h:outputText value="#{reservaClientBean.reserva.fechaReserva}"/>
                 </p:panelGrid>
                 <br></br>
-                <p:commandButton id="home" value="Inicio" action="goHome" icon="ui-icon-home"/>
+                <p:commandButton id="back" value="Atrás" action="reservas" icon="ui-icon-arrowrefresh-1-w" immediate="true"/>
                 </h:form>
             </ui:define>
 

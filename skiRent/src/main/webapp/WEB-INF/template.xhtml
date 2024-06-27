@@ -18,7 +18,7 @@
 
             <p:layoutUnit position="north" size="100" resizable="true" closable="true" collapsible="true">
                 
-                <h2><h:outputText value="Aplicación Empresarial - SkiRent"/></h2>
+                <h2><h:outputText value="Aplicación Empresarial - SkiRent" style="color: blue; font-size: 30px;"/></h2>
                 <h:form>
                     <p:toolbar rendered="#{request.isUserInRole('users') or request.isUserInRole('owners')}">
                         <f:facet name="left">
@@ -51,7 +51,7 @@
                 <p:submenu label ="Usuario" rendered="#{request.isUserInRole('users')}">
                     <p:menuitem value="Reservar" action="reservar" icon="ui-icon-cart"/>
                     <p:menuitem value="Chat" outcome="/chat/chatroom.xhtml" icon="ui-icon-person"/>
-                    <p:menuitem value="Gestionar Reservas" outcome="/reservas/reservas.xhtml" icon="ui-icon-clipboard"/>
+                    <p:menuitem value="Gestionar Reservas" outcome="/reservar/reservas.xhtml" icon="ui-icon-clipboard"/>
                     <p:menuitem value="Eliminar Cuenta " outcome="/eliminarCuenta.xhtml" icon="ui-icon-trash"/>
                 </p:submenu>
                 
