@@ -10,7 +10,28 @@
         <ui:composition template="./WEB-INF/template.xhtml">
 
             <ui:define name="content">
-                <h:outputText value="Mostrando #{usersFacadeREST.countREST()} usuarios"/>
+                
+                <!-- Introducción de la aplicación de alquiler de equipos de esquí -->
+                <h1 style="text-align: center; margin-top: 20px; color: blue; font-size: 28px;">Bienvenido a SkiRent</h1>
+                <p style="text-align: center; font-size: 18px; margin: 20px;">
+                    SkiRent es su solución integral para alquilar equipos de esquí de alta calidad. 
+                    Ya sea que sea un principiante o un esquiador experimentado, 
+                    tenemos el equipo adecuado para usted. Ofrecemos una amplia gama de equipos, 
+                    desde esquís y botas hasta bastones y cascos, todo a precios competitivos.
+                </p>
+
+                <!-- Enlaces a fotos -->
+                <div style="text-align: center; margin: 20px;">
+                    <a href="esqui" target="_blank">
+                        <img src="https://www.civitatis.com/blog/wp-content/uploads/2021/12/portada-esqui-espana.jpg" alt="Equipo de esquí" style="width: 200px; margin: 10px;"/>
+                    </a>
+                    <a href="snowboard" target="_blank">
+                        <img src="https://laridershop.com/modules/ph_simpleblog/covers/22.jpg" alt="Equipo de snowboard" style="width: 200px; margin: 10px;"/>
+                    </a>
+                    <a href="trineo" target="_blank">
+                        <img src="https://media.tacdn.com/media/attractions-splice-spp-674x446/07/35/de/b0.jpg" alt="Trineos" style="width: 200px; margin: 10px;"/>
+                    </a>
+                </div>
                 
                 <!-- Mostrar mensaje si la cuenta es temporal -->
                 <h:panelGroup rendered="#{not loginView.authenticatedUser.esVerificado and request.isUserInRole('owners')}">
